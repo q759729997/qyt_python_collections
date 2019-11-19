@@ -37,8 +37,8 @@ source deactivate 或  conda deactivate # 退出环境，Linux需加source
 conda info  # 查看基本环境信息，包括Python版本号，运行环境等等
 conda env list  # 查看所有环境
 conda create --name python36 python=3.6  # 创建环境，并指明python版本
-conda env remove -n python36 --all# 删除环境，python36为环境名称，--all为删除该环境下所有包
-conda create -n cetc --clone /data/conda_env  # 导入环境
+conda env remove -n python36 --all  # 删除环境，python36为环境名称，--all为删除该环境下所有包
+conda create -n myenv --clone /data/conda_env  # 导入环境
 /miniconda3/envs/python36/lib/python3.6/site-packages # 包位置
 ~~~
 

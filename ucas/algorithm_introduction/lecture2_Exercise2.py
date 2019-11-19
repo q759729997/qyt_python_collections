@@ -7,6 +7,7 @@
 其中，x ∈ [0, 9]。现给定一个根据上述定义生成的文件
 00.tar.gz (该文件从课程网站下载)，请确定其中包含的以xx 为文
 件名的文件个数以及这些文件中所记录的非负整数之和。deadline: 2019.12.01
+https://blog.csdn.net/still_night/article/details/84667208
 """
 import os
 import zlib
