@@ -82,12 +82,18 @@ def listdir(path, file_names, file_paths):  # 传入存储的list
 - 递归读取文件
 
 ~~~
-def listdir(path, file_names):  # 传入存储的list
-    """递归读取文件"""
+def get_file_names_recursion(path, file_names):
+    """递归读取文件，file_names会递归更新.
+
+    Args:
+        path: 待递归检索的文件夹路径.
+        file_names: 待输出结果的文件名列表.
+
+    """
     for file in os.listdir(path):
         file_path = os.path.join(path, file)
         if os.path.isdir(file_path):
-            listdir(file_path, file_names, file_paths)
+            get_file_names_recursion(file_path, file_names)
         else:
             file_names.append(file_path)
 ~~~

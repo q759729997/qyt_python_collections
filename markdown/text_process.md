@@ -33,3 +33,28 @@ print(remove_blank('中    国      人', keep=True))
 if word in {'。', '！', '?', '……'}
 ~~~
 
+## 句子切分
+
+- 句子切分，分割符号：。 ？ ！
+
+~~~
+def split_content(content):
+    """句子切分，分割符号：。 ？ ！.
+
+    Args:
+        content: 待分句的文本.
+
+    Returns:
+        句子列表.
+    """
+    sents = list()
+    temp_sent = list()
+    for char in list(content):
+        temp_sent.append(char)
+        if char in {'。', '？', '！'}:
+            sents.append(''.join(temp_sent))
+            temp_sent = list()
+    else:
+        sents.append(''.join(temp_sent))
+    return sents
+~~~
