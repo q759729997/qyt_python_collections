@@ -29,44 +29,31 @@ def calculate_domino(l_list, r_list, first, last, w_list):
 
     def get_domino_max(l_list, r_list, first, last):
         if last - first == 1:
+            print('last==first:{},{}, r-num:{},l-num:{}'.format(last, first, r_list[first], l_list[last]))
             max = r_list[first] * l_list[last]
         else:
             middle = int((first + last) / 2)
             print('middle:{}'.format(middle))
-            if l_list[middle] > r_list[middle]:
-                max_l1 = get_domino_max(l_list, r_list, first, middle)
-                max_r1 = get_domino_max(l_list, r_list, middle, last)
-                max1 = max_l1 + max_r1
-                # 交换
-                temp = l_list[middle]
-                l_list[middle] = r_list[middle]
-                r_list[middle] = temp
-                max_l2 = get_domino_max(l_list, r_list, first, middle)
-                max_r2 = get_domino_max(l_list, r_list, middle, last)
-                max2 = max_l2 + max_r2
-                if max1 > max2:
-                    max = max1
-                    w_list[middle] = 1
-                else:
-                    max = max2
-                    w_list[middle] = 0
+            print('1 get_domino_max==first==middle:{},{}'.format(first, middle))
+            max_l1 = get_domino_max(l_list, r_list, first, middle)
+            print('1 get_domino_max==last==middle:{},{}'.format(last, middle))
+            max_r1 = get_domino_max(l_list, r_list, middle, last)
+            max1 = max_l1 + max_r1
+            # 交换
+            temp = l_list[middle]
+            l_list[middle] = r_list[middle]
+            r_list[middle] = temp
+            print('2 get_domino_max==first==middle:{},{}'.format(first, middle))
+            max_l2 = get_domino_max(l_list, r_list, first, middle)
+            print('2 get_domino_max==last==middle:{},{}'.format(last, middle))
+            max_r2 = get_domino_max(l_list, r_list, middle, last)
+            max2 = max_l2 + max_r2
+            if max1 > max2:
+                max = max1
+                w_list[middle] = 1
             else:
-                max_l1 = get_domino_max(l_list, r_list, first, middle)
-                max_r1 = get_domino_max(l_list, r_list, middle, last)
-                max1 = max_l1 + max_r1
-                # 交换
-                temp = l_list[middle]
-                l_list[middle] = r_list[middle]
-                r_list[middle] = temp
-                max_l2 = get_domino_max(l_list, r_list, first, middle)
-                max_r2 = get_domino_max(l_list, r_list, middle, last)
-                max2 = max_l2 + max_r2
-                if max1 > max2:
-                    max = max1
-                    w_list[middle] = 0
-                else:
-                    max = max2
-                    w_list[middle] = 1
+                max = max2
+                w_list[middle] = 0
         return max
     return get_domino_max(l_list, r_list, first, last)
 
@@ -83,6 +70,10 @@ if __name__ == "__main__":
     first = 0
     last = n
     w_list = [0] * n
+    print('l_list:{}'.format(l_list))
+    print('r_list:{}'.format(r_list))
     max = calculate_domino(l_list, r_list, first, last, w_list)
+    print('l_list:{}'.format(l_list))
+    print('r_list:{}'.format(r_list))
     print(max)
     print(w_list)
