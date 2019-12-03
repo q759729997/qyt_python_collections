@@ -21,6 +21,25 @@ with codecs.open(input_file, mode='r', encoding='utf8') as fr:
     print('data_list:{}'.format(data_list[:2]))
 ~~~
 
+- 迭代器方式读取txt
+
+~~~
+def read_file_iter(file_name):
+    """读取文件内容，使用迭代器返回.
+
+    Args:
+        file_name: 文件名.
+
+    Returns:
+        文件内容迭代器，迭代内容为每行.
+    """
+    with codecs.open(file_name, mode='r', encoding='utf8') as fr:
+        for line in fr:
+            line = line.strip()
+            if len(line) > 0:
+                yield line
+~~~
+
 - 输出txt
 
 ~~~
@@ -45,6 +64,24 @@ def get_processed_sents(file_name):
             if len(sent) > 0:
                 sents.append(sent)
         return sents
+~~~
+
+- 读取csv，迭代器
+
+~~~
+def read_csv_file_iter(file_name):
+    """读取csv文件内容，使用迭代器返回.
+
+    Args:
+        file_name: 文件名.
+
+    Returns:
+        文件内容迭代器，迭代内容为每行.
+    """
+    with codecs.open(file_name, 'r', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            yield [row['sent'], json.loads(row['relations'], json.loads(row['entities']))]
 ~~~
 
 - 输出csv文件
