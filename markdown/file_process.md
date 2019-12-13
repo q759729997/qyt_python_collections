@@ -82,6 +82,23 @@ def read_csv_file_iter(file_name):
         reader = csv.DictReader(csvfile)
         for row in reader:
             yield [row['sent'], json.loads(row['relations'], json.loads(row['entities']))]
+
+def read_csv_file(file_name, words_key='words'):
+    """读取csv文件内容，返回全部内容.
+
+    Args:
+        file_name: 文件名.
+        words_key: 分词列表对应的列名.
+
+    Returns:
+        文件内容.
+    """
+    with codecs.open(file_name, 'r', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        csv_data = list()
+        for row in reader:
+            csv_data.append(json.loads(row[words_key]))
+        return csv_data
 ~~~
 
 - 输出csv文件

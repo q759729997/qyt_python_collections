@@ -1,5 +1,59 @@
 # Python代码风格检查与格式化
 
+## 示例代码风格
+
+~~~
+"""
+    my_module - Briefly describe this module.
+
+    Main members:
+
+        # get_gcd - 获取最大公约数.
+        # MyMath - 自定义数学工具类.
+"""
+import math
+
+
+def get_gcd(a, b):
+    """ 获取最大公约数.
+
+        @params:
+            a - 参数1.
+            b - 参数2.
+
+        @return:
+            On success - 最大公约数.
+            On failure - 错误信息.
+    """
+    # Briefly describe the process of this function
+    return math.gcd(a, b)
+
+
+class MyMath(object):
+    """ 自定义数学工具类.
+
+    Main methods:
+        gcd - 获取最大公约数.
+    """
+
+    def __init__(self):
+        super().__init__()
+
+    def gcd(self, a, b):
+        """ 获取最大公约数.
+
+        @params:
+            a - 参数1.
+            b - 参数2.
+
+        @return:
+            On success - 最大公约数.
+            On failure - 错误信息.
+        """
+        # Briefly describe the process of this function
+        return math.gcd(a, b)
+~~~
+
 ## 参考资料
 
 - `Google`代码规范：<https://www.runoob.com/w3cnote/google-python-styleguide.html>
