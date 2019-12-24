@@ -37,3 +37,5 @@ if __name__ == "__main__":
     print('φ(n)=(p-1)(q-1)={}×{}={}'.format(p-1, q-1, phi_n))
     d = get_d(e, phi_n)
     print('d={}'.format(d))
+    d = get_d(213, 466)
+    print('d={}'.format(d))

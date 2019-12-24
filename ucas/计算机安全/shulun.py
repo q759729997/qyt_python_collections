@@ -28,6 +28,8 @@ if __name__ == "__main__":
     # print('gcd:{}'.format(get_gcd(8, 15)))  # 1
 
     # 取模
-    a = 11
-    b = 13
-    print('mod:{}'.format(get_mod(a, b, a_pow=7)))  # 2
+    a = 2
+    b = 467
+    print('mod:{}'.format(get_mod(a, b, a_pow=127)))  # 2
+    print(213**(-1))
+    print(431 % 466)
