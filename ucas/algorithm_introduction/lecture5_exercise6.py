@@ -51,10 +51,10 @@ def calculate_domino(l_list, r_list, first, last, w_reverse_flag):
 
 
 if __name__ == "__main__":
-    s = [[5, 8], [4, 2], [9, 6], [7, 7], [3, 9], [11, 10]]
-    dp = list()
-    # 构建每个位置0,1的状态空间
-    for i, temp in enumerate(s):
+    dominno_cards = [[5, 8], [4, 2], [9, 6], [7, 7], [3, 9], [11, 10]]
+    dp_items = list()
+    # 构建每个位置0,1的状态元素值
+    for i, temp in enumerate(dominno_cards):
         dp_item0 = None
         dp_item1 = None
         dp_item = list()
@@ -64,7 +64,17 @@ if __name__ == "__main__":
         else:
             dp_item.append((temp[0], temp[1]))
             dp_item.append((temp[1], temp[0]))
-        dp.append(dp_item)
-    print(dp)
+        dp_items.append(dp_item)
+    print(dp_items)
     # [[(5, 8), (8, 5)], [(2, 4), (4, 2)], [(6, 9), (9, 6)], [(7, 7), (7, 7)], [(3, 9), (9, 3)], [(10, 11), (11, 10)]]
-    # 构建
+    # [[0, 0], [16, 32], [40, 68], [103, 131], [124, 194], [214, 293]]
+    # 构建状态空间
+    dp_status = [[0, 0]]
+    for i in range(1, len(dominno_cards)):
+        status_item_0_1 = dp_status[i-1][0] + dp_items[i][0][0] * dp_items[i-1][0][1]
+        status_item_0_2 = dp_status[i-1][0] + dp_items[i][0][0] * dp_items[i-1][1][1]
+
+        status_item_1_1 = dp_status[i-1][1] + dp_items[i][1][0] * dp_items[i-1][0][1]
+        status_item_1_2 = dp_status[i-1][1] + dp_items[i][1][0] * dp_items[i-1][0][1]
+        dp_status.append([max(status_item_0_1, status_item_0_2), max(status_item_1_1, status_item_1_2)])
+    print(dp_status)
