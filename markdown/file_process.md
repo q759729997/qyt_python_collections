@@ -38,6 +38,23 @@ def read_file_iter(file_name):
             line = line.strip()
             if len(line) > 0:
                 yield line
+
+def read_file_texts(file_name):
+    """读取文件内容.
+
+    Args:
+        file_name: 文件名.
+
+    Returns:
+        文件内容列表，元素为每行.
+    """
+    with codecs.open(file_name, mode='r', encoding='utf8') as fr:
+        texts = list()
+        for line in fr:
+            line = line.strip()
+            if len(line) > 0:
+                texts.append(line)
+        return texts
 ~~~
 
 - 输出txt
