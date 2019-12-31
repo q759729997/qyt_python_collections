@@ -57,6 +57,7 @@ conda env list  # 执行此命令检查是否安装成功
 - 设置pip源
 
 ~~~python
+# windows下设置：https://blog.csdn.net/kan2016/article/details/81203465
 mkdir ~/.pip
 cd ~/.pip/
 vim pip.conf
