@@ -37,17 +37,12 @@ if __name__ == "__main__":
     5, 11, 3, 9
     7, 11, 17, 8
     """
-    p, q, e, M = 11, 13, 11, 7
-    n = p * q
-    print('=========求n=========')
-    print('n=pq={}×{}={}'.format(p, q, n))
-    phi_n = (p - 1) * (q - 1)
-    print('=========求φ(n)=========')
-    print('φ(n)=(p-1)(q-1)={}×{}={}'.format(p-1, q-1, phi_n))
-    print('=========求d=========')
-    d = get_d(e, phi_n)
+    e, phi_n = 5, 24
+    n, C = 35, 10
+    print('=========求d==============')
+    d = get_d(e=e, phi_n=phi_n)
     print('d={}'.format(d))
-    print('=========求C=========')
-    C = get_mod(M, n, a_pow=e)
-    print('C=M**e mod n={}**{} mod {}'.format(M, e, n))
-    print('结论：n={},φ(n)={},d={},C={}'.format(n, phi_n, d, C))
+    print('=========求M==============')
+    M = get_mod(C, n, a_pow=d)
+    print('M={}'.format(M))
+    print('M=C**d mod n={}**{} mod {}'.format(C, d, n))

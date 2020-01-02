@@ -22,14 +22,12 @@ def get_mod(a, b, a_pow=1):
 if __name__ == "__main__":
     """数论计算"""
     # gcd 欧几里得算法 求最大公因子
-    a = 60
-    b = 24
-    print('gcd:{}'.format(get_gcd(a, b)))  # 12
+    # a = 60
+    # b = 24
+    # print('gcd:{}'.format(get_gcd(a, b)))  # 12
     # print('gcd:{}'.format(get_gcd(8, 15)))  # 1
 
     # 取模
-    a = 2
-    b = 467
-    print('mod:{}'.format(get_mod(a, b, a_pow=127)))  # 2
-    print(213**(-1))
-    print(431 % 466)
+    # 7, 71, 5
+    a, b, a_pow = 4, 71, 5
+    print('mod结果:{}'.format(get_mod(a, b, a_pow=a_pow)))  # 2
