@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <script>
+        $(function () {
+            $("button").click(function () {
+                var file = $("#f1")[0].files[0];//等价于document.getElementById("f1").files[0]
+                var form = new FormData();
+                form.append("file", file);
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("post", "/upload", true);
+                xhr.send(form);
+                alert("已上传")
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState == 4 && xhr.status == 200) {//请求已完成，且响应已就绪
+                        var data = xhr.responseText;
+                        $("#div1").append(data)
+                    }
+                }
+            })
+        });
+    </script>
+
+    <input type="file" id="f1" name="file">
+    <br>
+    <button>上传文件</button>
+    <div id="div1"></div>
+</body>
+
+</html>
