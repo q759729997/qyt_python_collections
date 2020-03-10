@@ -1,7 +1,7 @@
 """
 Socket Tornado
 参考资料：https://blog.csdn.net/qq_33961117/article/details/94624357
-在线socket测试：http://ws.douqq.com/
+在线websocket测试：http://ws.douqq.com/
 在线图像转流：https://tu.sioe.cn/gj/tupian-shujuliu/
 """
 import re
