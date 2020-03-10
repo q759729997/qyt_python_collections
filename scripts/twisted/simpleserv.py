@@ -7,13 +7,14 @@ class ServerProtocol(protocol.Protocol):
     """This is just about the simplest possible protocol"""
     def dataReceived(self, data):
         "As soon as any data is received, write it back."
+        # TODO 数据过长处理
         print('data:{}'.format(data[:20]))
         try:
             if isinstance(data, bytes):
                 print('data decode')
                 data = data.decode('utf8')
-            print('dataReceived : {}'.format(data))
-            response = data
+            print('dataReceived : {}'.format(data[:50]))
+            response = data[:50]
         except Exception:
             traceback.print_exc()
             response = 'need utf8 encode'
