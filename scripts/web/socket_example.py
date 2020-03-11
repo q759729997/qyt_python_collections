@@ -5,27 +5,35 @@ import json
 import traceback
 
 start_time = datetime.datetime.now()
-BUFFER_SIZE = 10*1024*1024
+BUFFER_SIZE = 10 * 1024 * 1024
 
 
 class MyTCPHandler(socketserver.BaseRequestHandler):
     def handle(self):
-        global server
-        while True:
-            recv = self.request.recv(BUFFER_SIZE)
-            print('recv len:{}'.format(len(recv)))
-            print('recv example:{}'.format(recv[:50]))
-            if len(recv) > 0:
-                recv = self._bytes_decode(recv.strip())
-                try:
-                    recv_json = json.loads(recv)
-                    print('image:{}'.format(recv_json.get('image', '')[:50]))
-                    self.request.sendall("res".encode("utf8"))
-                except Exception as e:
-                    traceback.print_exc()
-                    self.request.sendall(str(e).encode("utf8"))
-            else:
-                self.request.sendall("request is none".encode("utf8"))
+        try:
+            global server
+            while True:
+                recv = self.request.recv(BUFFER_SIZE)
+                print('recv len:{}'.format(len(recv)))
+                print('recv example:{}'.format(recv[:50]))
+                if len(recv) > 0:
+                    recv = self._bytes_decode(recv.strip())
+                    try:
+                        recv_json = json.loads(recv)
+                        print('image:{}'.format(recv_json.get('image', '')[:50]))
+                        self.request.sendall("res".encode("utf8"))
+                    except Exception as e:
+                        traceback.print_exc()
+                        self.request.sendall(str(e).encode("utf8"))
+                else:
+                    self.request.sendall("request is none".encode("utf8"))
+        except Exception:
+            traceback.print_exc()
+            response_str = "disconnected : {}".format(self.client_address)
+            print(response_str)
+            self.request.sendall(response_str.encode("utf8"))
+        finally:
+            self.request.close()
 
     def _bytes_decode(self, recv_bytes):
         """解码"""
@@ -37,6 +45,16 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             except Exception as e:
                 raise e
         return recv
+
+    def setup(self):
+        response_str = "connected : {}".format(self.client_address)
+        print(response_str)
+        self.request.sendall(response_str.encode("utf8"))
+
+    def finish(self):
+        response_str = "connect closed : {}".format(self.client_address)
+        print(response_str)
+        self.request.sendall(response_str.encode("utf8"))
 
 
 if __name__ == '__main__':
