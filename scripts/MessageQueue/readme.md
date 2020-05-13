@@ -52,6 +52,7 @@ cd /root/mq/apache-activemq-5.15.12/bin
 
 ### Python接入
 
+- 配置`activemq.xml`;`transportConnector name="stomp"`
 - ActiveMQ支持Python访问，提供了基于STOMP协议（端口为61613）的库。
 - 安装：https://www.cnblogs.com/luo630/p/9188107.html
 
