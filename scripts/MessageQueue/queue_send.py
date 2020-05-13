@@ -9,10 +9,9 @@ if __name__ == "__main__":
     conn.connect(username="admin", passcode="admin", wait=True)
 
     # 发送消息
-    for i in range(10):
-        # 第一个参数：队列的名称
-        # 第二个参数：消息的内容
-        conn.send("chat_queue", "query:{}".format(i))
+    for i in range(3):
+        print('发送第{}条'.format(i))
+        conn.send("/queue/chat_queue", "测试消息：query:{}".format(i))
         time.sleep(1)
 
     # 断开连接
