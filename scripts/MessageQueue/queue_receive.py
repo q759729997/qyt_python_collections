@@ -23,11 +23,12 @@ if __name__ == "__main__":
     # 订阅到指定的队列，这个要和发送端发送的队列保持一致
     # 当发送端有消息过来时，消息的内容会自动传递到SampleListener类下的on_message的message参数里。headers则包含了一些额外信息，比如时间戳、队列名等等
     # 当然，如果有错误就会传到on_error中，不过这里没有定义，可以的话定义一下也是好的，参数和on_message是一样的
-    conn.subscribe("/queue/chat_queue")
+    conn.subscribe("/topic/test")  # queue topic
 
     # 让程序不停下，不然程序立马就结束了
+    print('启动监听')
     while True:
         pass
-
+    print('结束监听')
     # 断开连接
     conn.disconnect()

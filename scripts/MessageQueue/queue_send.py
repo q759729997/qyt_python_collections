@@ -11,7 +11,7 @@ if __name__ == "__main__":
     # 发送消息
     for i in range(3):
         print('发送第{}条'.format(i))
-        conn.send("/queue/chat_queue", "测试消息：query:{}".format(i))
+        conn.send("/topic/test", "测试消息：query:{}".format(i))  # queue topic
         time.sleep(1)
 
     # 断开连接
