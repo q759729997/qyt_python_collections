@@ -78,6 +78,20 @@ trusted-host=mirrors.aliyun.com
 豆瓣：http://pypi.douban.com/simple/
 ~~~
 
+## pip包
+
+- `requirements.txt`软件包版本：
+
+~~~wiki
+torch>=1.0.0
+regex!=2019.12.17
+overrides==2.0
+torch>=1.2.0,!=1.3.0
+# Parameter parsing (but not on Windows).
+jsonnet>=0.10.0 ; sys.platform != 'win32'
+python-dateutil<2.8.1
+~~~
+
 ## 模型训练
 
 - 显卡查看
