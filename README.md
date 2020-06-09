@@ -63,11 +63,11 @@ cd ~/.pip/
 vim pip.conf
 # 以下为设置内容
 [global]
-index-url=http://mirrors.aliyun.com/pypi/simple/
-extra-index-url=http://pypi.douban.com/simple/
+index-url=http://pypi.douban.com/simple/
+extra-index-url=http://mirrors.aliyun.com/pypi/simple/
 [install]
-trusted-host=mirrors.aliyun.com
-             pypi.douban.com
+trusted-host=pypi.douban.com
+             mirrors.aliyun.com
 ~~~
 
 - pip源列表
