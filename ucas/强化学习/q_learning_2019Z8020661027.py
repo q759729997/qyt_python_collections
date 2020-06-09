@@ -170,13 +170,14 @@ if __name__ == "__main__":
     # 训练
     episodes = 5000
     episode_rewards = []
-    for episode in range(episodes):
+    for episode in range(1, episodes+1):
         agent.epsilon = max(agent.epsilon-0.001, 0.01)
         episode_reward = play_qlearning(env, agent, train=True)
+        episode_rewards.append(episode_reward)
         if episode % 500 == 0:
             print('train episode:{}'.format(episode))
             print('episode_reward：{},agent.epsilon:{}'.format(episode_reward, agent.epsilon))
-        episode_rewards.append(episode_reward)
+            print('episode_rewards 平均奖励 = {} / {} = {}'.format(sum(episode_rewards), len(episode_rewards), np.mean(episode_rewards)))
 
     plt.plot(episode_rewards)
     plt.show()
