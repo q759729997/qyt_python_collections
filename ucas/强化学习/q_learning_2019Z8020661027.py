@@ -111,7 +111,7 @@ env = gym.make('FrozenLake-v0')
 
 
 class QLearningAgent(object):
-    def __init__(self, env, gamma=0.9, learning_rate=0.5, epsilon=.01):
+    def __init__(self, env, gamma=0.9, learning_rate=0.1, epsilon=.01):
         self.gamma = gamma
         self.learning_rate = learning_rate
         self.epsilon = epsilon
@@ -181,4 +181,4 @@ if __name__ == "__main__":
     print('平均回合奖励 = {} / {} = {}'.format(sum(episode_rewards),
                                          len(episode_rewards),
                                          np.mean(episode_rewards)))
-    # 平均回合奖励 = 61.0 / 100 = 0.61
+    # 平均回合奖励 = 73.0 / 100 = 0.73
