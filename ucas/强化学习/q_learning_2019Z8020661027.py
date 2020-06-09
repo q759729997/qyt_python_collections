@@ -155,6 +155,12 @@ if __name__ == "__main__":
     print('状态数量 = {}'.format(env.observation_space.n))
     print('动作数量 = {}'.format(env.action_space.n))
     agent = QLearningAgent(env, epsilon=1)
+    """
+    观察空间 = Discrete(16)
+    动作空间 = Discrete(4)
+    状态数量 = 16
+    动作数量 = 4
+    """
     # 随机选择时
     episode_rewards = [play_qlearning(env, agent) for _ in range(100)]
     print('平均回合奖励 = {} / {} = {}'.format(sum(episode_rewards),
