@@ -58,3 +58,26 @@ def split_content(content):
         sents.append(''.join(temp_sent))
     return sents
 ~~~
+
+- 字符串左侧截取
+
+~~~python
+TODO：
+lstrip
+re_obj = re.compile('|'.join([re.escape(item) for item in deletestrs]))
+for word in words:
+    print('==============')
+    print(word)
+    match_obj = re_obj.match(word)
+    if match_obj:
+        word_striped = word[match_obj.span()[-1]:]
+        if word_striped != word:
+            print(word_striped)
+            print('===', match_obj.group())
+
+
+re_obj = re.compile(re.escape(intent))
+                match_obj = re_obj.match(text)
+                if match_obj:
+                    text = text[match_obj.span()[-1]:]
+~~~
