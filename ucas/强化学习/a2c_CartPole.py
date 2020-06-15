@@ -26,41 +26,63 @@ actor_net = None
 critic_net = None
 
 
-class AdvantageActorCriticAgent(object):
-    """A2C智能体"""
-    def __init__(self, gamma=0.99):
+class PPOReplayerBuffer(object):
+    """经验缓存区"""
+    def __init__(self):
+        self.memory = pd.DataFrame()
+    
+class PPOAgent(object):
+    """PPO智能体"""
+    def __init__(self, clip_ratio=0.1, gamma=0.99, lambd=0.99, min_trajectory_length=1000,
+            batches=1, batch_size=64):
         self.action_n = env.action_space.n
         self.gamma = gamma
-        self.discount = 1.
+        self.lambd = lambd
+        self.clip_ratio = clip_ratio
+        self.min_trajectory_length = min_trajectory_length
+        self.batches = batches
+        self.batch_size = batch_size
+        self.trajectory = []
+        self.replayer = PPOReplayerBuffer()
 
-    def decide(self, observation):
-        """actor网络对observation进行预测，按概率求取下一步动作"""
-        probs = actor_net.predict(observation[np.newaxis])[0]
-        action = np.random.choice(self.action_n, p=probs)
-        return action
-
-    def learn(self, observation, action, reward, next_observation, done):
-        x = observation[np.newaxis]
-        next_x = next_observation[np.newaxis]
-        # 使用critic网络计算observation与next_observation状态价值
-        u = reward + (1. - done) * self.gamma * critic_net.predict(next_x)
-        td_error = u - critic_net.predict(x)
-
-        # 训练执行者网络
-        x_tensor = tf.convert_to_tensor(observation[np.newaxis], dtype=tf.float32)
-        # 使用梯度带计算梯度
-        with tf.GradientTape() as tape:
-            pi_tensor = actor_net(x_tensor)[0, action]
-            logpi_tensor = tf.math.log(tf.clip_by_value(pi_tensor, 1e-6, 1.))
-            loss_tensor = -self.discount * td_error * logpi_tensor
-        grad_tensors = tape.gradient(loss_tensor, actor_net.variables)
-        # 更新执行者网络
-        actor_net.optimizer.apply_gradients(zip(grad_tensors, actor_net.variables))
-
-        # 训练评论者网络
-        critic_net.fit(x, u, verbose=0)  # 更新评论者网络
-
+    def learn(self, observation, action, reward, done):
+        self.trajectory.append((observation, action, reward))
         if done:
-            self.discount = 1.  # 为下一回合初始化累积折扣
-        else:
-            self.discount *= self.gamma  # 进一步累积折扣
+            df = pd.DataFrame(self.trajectory, columns=['observation', 'action', 'reward'])
+            observations = np.stack(df['observation'])
+            df['v'] = critic_net.predict(observations)
+            pis = actor_net.predict(observations)
+            df['pi'] = [pi[action] for pi, action in zip(pis, df['action'])]
+            df['next_v'] = df['v'].shift(-1).fillna(0.)
+            df['u'] = df['reward'] + self.gamma * df['next_v']
+            df['delta'] = df['u'] - df['v']
+            df['return'] = df['reward']
+            df['advantage'] = df['delta']
+            for i in df.index[-2::-1]:
+                df.loc[i, 'return'] += self.gamma * df.loc[i + 1, 'return']
+                df.loc[i, 'advantage'] += self.gamma * self.lambd * df.loc[i + 1, 'advantage']
+            fields = ['observation', 'action', 'pi', 'advantage', 'return']
+            self.replayer.store(df[fields])
+            self.trajectory = []
+            if len(self.replayer.memory) > self.min_trajectory_length:
+                for batch in range(self.batches):
+                    observations, actions, pis, advantages, returns = \
+                            self.replayer.sample(size=self.batch_size)
+                    # 训练执行者
+                    s_tensor = tf.convert_to_tensor(observations, dtype=tf.float32)
+                    gather_tensor = tf.convert_to_tensor([(i, a) for i, a in enumerate(actions)], dtype=tf.int32)
+                    pi_old_tensor = tf.convert_to_tensor(pis, dtype=tf.float32)
+                    advantage_tensor = tf.convert_to_tensor(advantages, dtype=tf.float32)
+                    with tf.GradientTape() as tape:
+                        all_pi_tensor = actor_net(s_tensor)
+                        pi_tensor = tf.gather_nd(all_pi_tensor, gather_tensor)
+                        surrogate_advantage_tensor = (pi_tensor / pi_old_tensor) * advantage_tensor
+                        clip_times_advantage_tensor = self.clip_ratio * surrogate_advantage_tensor
+                        max_surrogate_advantage_tensor = advantage_tensor + tf.where(advantage_tensor > 0., clip_times_advantage_tensor, -clip_times_advantage_tensor)
+                        clipped_surrogate_advantage_tensor = tf.minimum(surrogate_advantage_tensor,  max_surrogate_advantage_tensor)
+                        loss_tensor = -tf.reduce_mean(clipped_surrogate_advantage_tensor)
+                    actor_grads = tape.gradient(loss_tensor, actor_net.variables)
+                    actor_net.optimizer.apply_gradients(zip(actor_grads, actor_net.variables))
+                    # 训练评论者
+                    critic_net.fit(observations, returns, verbose=0)
+                self.replayer = PPOReplayerBuffer()
