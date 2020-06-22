@@ -31,7 +31,7 @@ warnings.filterwarnings('ignore')  # "error", "ignore", "always", "default", "mo
 ~~~
 import argparse
 
-def args(arg_parser):
+def define_args(arg_parser):
     arg_parser.add_argument('-encoding', '--encoding', default='utf8', help='file encoding.')
     arg_parser.add_argument('-g', '--gold_file', help='gold data file input.')
     arg_parser.add_argument('-p', '--pred_file', help='predicted file input.')
@@ -43,9 +43,9 @@ def args(arg_parser):
 
 ~~~
 parser = argparse.ArgumentParser()
-    args(parser)
-    ags = parser.parse_args()
-    file_gold = codecs.open(ags.gold_file, 'r', ags.encoding)
+    define_args(parser)
+    parser_args = parser.parse_args()
+    file_gold = codecs.open(parser_args.gold_file, 'r', parser_args.encoding)
 ~~~
 
 ## 计数
