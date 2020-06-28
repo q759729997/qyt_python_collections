@@ -7,7 +7,3 @@
 
 - [Python性能分析](https://flystarhe.github.io/docs-2014/python/notes/profiler/#memory_profiler)
 - 内存占用：[Monitor Memory usage of Python code](https://github.com/pythonprofilers/memory_profiler)
-
-## 强化学习
-
-- [An elegant, flexible, and superfast PyTorch deep Reinforcement Learning platform](https://github.com/thu-ml/tianshou)
