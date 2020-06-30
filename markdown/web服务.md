@@ -36,3 +36,17 @@ def after_request(response):
    return response
 ~~~
 
+## WSGI
+
+- [Python uWSGI 安装配置](https://www.runoob.com/python3/python-uwsgi.html)
+- WSGI的全称是Web Server Gateway Interface，翻译过来就是Web服务器网关接口。具体的来说，WSGI是一个规范，定义了Web服务器如何与Python应用程序进行交互，使得使用Python写的Web应用程序可以和Web服务器对接起来。
+- 添加并发和监控，生成 4 个进程, 每个进程有 2 个线程。如果你要执行监控任务，可以使用 stats 子系统，监控的数据格式是 JSON
+
+~~~shell
+uwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191
+~~~
+
+### WSGI存在的目的有两个：
+
+- 让Web服务器知道如何调用Python应用程序，并且把用户的请求告诉应用程序。
+- 让Python应用程序知道用户的具体请求是什么，以及如何返回结果给Web服务器。

@@ -1,7 +1,25 @@
 # pip命令
 
+- 安装包
+
 ~~~shell
+pip install SomePackage              # 最新版本
+pip install SomePackage==1.0.4       # 指定版本
+pip install 'SomePackage>=1.0.4'     # 最小版本
+pip search SomePackage  # 搜索包
+~~~
+
+- 升级包
+
+~~~shell
+pip install --upgrade SomePackage
 pip install --upgrade  -i https://pypi.douban.com/simple/ jieba
+~~~
+
+- 卸载包：
+
+~~~shell
+pip uninstall SomePackage
 ~~~
 
 ## Python包操作
