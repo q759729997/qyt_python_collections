@@ -43,3 +43,52 @@
 }
 ~~~
 
+## 远程开发
+
+- [win10下vscode配置sftp](https://www.cnblogs.com/raind/p/8975978.html)
+- 同时按ctrl + shift + p ,在弹出的输入框里输入 SFTP:config,并点进去
+
+~~~shell
+{
+    "name": "kdChatbot",
+    "host": "192.168.137.14",
+    "protocol": "sftp",
+    "port": 22,
+    "username": "root",
+    "password": "ROOT",
+    "remotePath": "/root/qiaoyongtian/projects/framework/kdChatbot",
+    "uploadOnSave": true,
+    "passive": false,
+    "interactiveAuth": true,
+    "syncMode": "update",
+    "ignore": [
+        ".vscode",
+        ".git",
+        ".DS_Store",
+        ".temp",
+        "__pycache__/",
+        "*.py[cod]",
+        "*$py.class"
+    ],
+    "watcher": {
+        "files": "**/*",
+        "autoUpload": true,
+        "autoDelete": true
+    }
+}
+~~~
+
+- [参考资料](https://blog.csdn.net/yh0503/article/details/89851899)
+- Remote Development扩展安装
+- 打开VS Code，登陆的时候自动打开命令行窗口，通过ctrl+shift+p打开设置Remote-SSH-Settings，设置Remote.SSH:Show Login Terminal为true
+- 下方状态栏打开ssh
+
+~~~shell
+# Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+# Host 我的阿里云
+#     HostName 39.104.161.233
+#     User root
+Host 开发机
+    HostName 192.168.137.14
+    User root
+~~~

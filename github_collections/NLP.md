@@ -8,3 +8,7 @@
 ## 问答
 
 - [北航大数据高精尖中心研究团队对问答系统的调研。包括基于知识图谱的问答系统（KBQA）和基于文本的问答系统（TextQA），每类系统分别对学术界和工业界进行调研。](https://github.com/BDBC-KG-NLP/QA-Survey)
+
+### 阅读理解
+
+- [《机器阅读理解：算法与实践》代码](https://github.com/zcgzcgzcg1/MRC_book)

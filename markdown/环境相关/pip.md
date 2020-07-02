@@ -44,3 +44,15 @@ python setup.py sdist bdist_wheel  # 打包
 twine upload dist/*.whl --verbose  # 将打包后的whl上传
 # Linux下文件改为：manylinux2010
 ~~~
+
+- 依赖文件添加至pip包，项目根目录下创建文件`MANIFEST.in`
+
+~~~
+# This actually adds the data file.
+# basic
+include requirements.txt
+include README.md
+include LICENSE
+# others
+include kdTimeConvert/models/modelfiles/holi_solar.json
+~~~
