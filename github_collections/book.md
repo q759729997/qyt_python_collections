@@ -6,5 +6,4 @@
 
 ## 强化学习
 
-- [Source codes for the book "Reinforcement Learning: Theory and Python Implementation"
-](https://github.com/zhiqingxiao/rl-book)
+- [Source codes for the book "Reinforcement Learning: Theory and Python Implementation"](https://github.com/zhiqingxiao/rl-book)
