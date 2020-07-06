@@ -92,3 +92,8 @@ Host 开发机
     HostName 192.168.137.14
     User root
 ~~~
+
+## 断点调试
+
+- 好像是最近有不少国内外的人碰到这个问题，大概也和powershell版本相关，解决方案很简单。
+- 打开Files/Preferences/Settings 查找python.terminal.activateEnvironment,在你当前的USER SETTINGS或者WORKSPACE SETTINGS把值改为True或者False，具体哪种会work貌似取决于你的VS CODE、windows、PowerShell版本，不同组合之间对这个值的要求不太一样，更改之后即可正常运行/调试。附张更改图吧
