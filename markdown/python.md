@@ -2,7 +2,7 @@
 
 - Python头
 
-~~~
+~~~shell
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 ~~~
@@ -11,7 +11,7 @@
 
 ## 守护进程
 
-~~~
+~~~shell
 nohup python ./train.py >> ./log_train.log 1>&1 &
 ~~~
 
@@ -19,7 +19,7 @@ nohup python ./train.py >> ./log_train.log 1>&1 &
 
 ## 忽略warning
 
-~~~
+~~~shell
 import warnings
 warnings.filterwarnings('ignore')  # "error", "ignore", "always", "default", "module" or "once"
 ~~~
@@ -28,7 +28,7 @@ warnings.filterwarnings('ignore')  # "error", "ignore", "always", "default", "mo
 
 - 定义
 
-~~~
+~~~shell
 import argparse
 
 def define_args(arg_parser):
@@ -41,16 +41,22 @@ def define_args(arg_parser):
 
 - 使用
 
-~~~
+~~~shell
 parser = argparse.ArgumentParser()
     define_args(parser)
     parser_args = parser.parse_args()
     file_gold = codecs.open(parser_args.gold_file, 'r', parser_args.encoding)
 ~~~
 
+- 传递json
+
+~~~shell
+--var_args_dict '{\"other_features\":1,\"num_layers\":2}'
+~~~
+
 ## 计数
 
-~~~
+~~~shell
 line_index = 0
     line_count = len(file_paths)
     for temp_path in file_paths:

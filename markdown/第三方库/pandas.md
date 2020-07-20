@@ -6,6 +6,19 @@
 # 需要选中表格内数据，将其复制到其他sheet页，即可正常读取；sheet_name配置为相应的sheet页码
 file_name = '~/aa.xlsx'
 df = pd.read_excel(file_name, sheet_name='Sheet1')
+
+def get_excel_data(file_name, sheet_name):
+    """ 获取Excel格式的数据.
+
+        @params:
+            file_name - 文件名.
+            sheet_name - sheet页名称.
+
+        @return:
+            On success - DataFrame.
+    """
+    df = pd.read_excel(file_name, sheet_name=sheet_name)
+    return df.fillna('')
 ~~~
 
 # 数据预处理

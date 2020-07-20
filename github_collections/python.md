@@ -7,3 +7,7 @@
 
 - [Python性能分析](https://flystarhe.github.io/docs-2014/python/notes/profiler/#memory_profiler)
 - 内存占用：[Monitor Memory usage of Python code](https://github.com/pythonprofilers/memory_profiler)
+
+## PDF解析
+
+- [extract tables from PDF](https://github.com/atlanhq/camelot)
