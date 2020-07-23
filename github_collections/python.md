@@ -30,11 +30,15 @@ pdf2htmlEX --zoom 1.3 test.pdf
 ~~~shell
 # 转换
 soffice --invisible --headless --convert-to pdf 20200721.docx --outdir ./
+soffice --invisible --headless --convert-to "html:HTML (StarWriter)":UTF8 ./11.doc --outdir ./
+soffice --invisible --headless --convert-to "docx:MS Word 2007 XML":44,34,76 ./测试啊.doc --outdir ./
+soffice --invisible --headless --convert-to "txt:Text (encoded):UTF8" ./测试啊.docx --outdir ./
 # 卸载 yum erase libreoffice\*
 yum install libreoffice-headless
 yum -y install libreoffice-langpack-zh-Han*
 # docker https://hub.docker.com/r/unifreq/libreoffice-headless
 docker run -it -v /usr/share/fonts:/usr/share/fonts -v /usr/local/share/fonts:/usr/local/share/fonts -v /root/qiaoyongtian/temp:/tmp unifreq/libreoffice-headless --invisible --headless --convert-to html /tmp/张南85万.doc --outdir /tmp/html
+# 乱码问题-把Windows下的字体C:\Windows\Fonts下的宋体，即simsun.ttc上传到linux服务器并赋值到上面的字体目录下赋予读写权限：https://www.bbsmax.com/A/ke5j2Va95r/
 ~~~
 
 ## CEB
