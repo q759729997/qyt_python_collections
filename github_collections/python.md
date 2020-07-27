@@ -41,7 +41,7 @@ docker run -it -v /usr/share/fonts:/usr/share/fonts -v /usr/local/share/fonts:/u
 # 乱码问题-把Windows下的字体C:\Windows\Fonts下的宋体，即simsun.ttc上传到linux服务器并赋值到上面的字体目录下赋予读写权限：https://www.bbsmax.com/A/ke5j2Va95r/
 ~~~
 
-## CEB
+## CEB解析
 
 - CEB是Chinese E-paper Basic的缩写，是北大方正电子公司拥有自主知识产权的一种版式文件格式，目前在我国政府机关公文处理中应用广泛。常用的字处理排版软件，如WORD、WPS等，生成的所有结果文件都可以方便地转换成CEB格式。
 
