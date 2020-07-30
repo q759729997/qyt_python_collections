@@ -84,3 +84,11 @@ pip freeze --local | grep -v '^-e' | cut -d = -f 1  | xargs -n1 pip install -U  
 ~~~
 ~/miniconda3/envs/python36/lib/python3.6/site-packages
 ~~~
+
+## Miniconda与Python版本对应关系
+
+~~~wiki
+conda 4.5.12：Python 3.7.1
+conda 4.5.1：Python 3.6.5
+conda 4.2.11：Python 3.5.2
+~~~
