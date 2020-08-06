@@ -1,3 +1,7 @@
+## 数据库
+
+- [tinydb，If you need a simple database with a clean API that just works without lots of configuration, TinyDB might be the right choice for you.](https://tinydb.readthedocs.io/en/latest/)
+
 ## 数据结构与算法
 
 - [算法/数据结构/Python/剑指offer/机器学习/leetcode
