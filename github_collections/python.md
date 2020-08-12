@@ -18,11 +18,30 @@
 - [Plumb a PDF for detailed information about each text character, rectangle, and line. Plus: Table extraction and visual debugging.](https://github.com/jsvine/pdfplumber)
 - [PDFMiner is a text extraction tool for PDF documents.](https://github.com/euske/pdfminer)
 - [pdf2HtmlEX Smallest pdf2htmlEX container and easiest way to convert pdf to html file (246MB)](https://hub.docker.com/r/bwits/pdf2htmlex)
-
+- [pdftabextract：从扫描的文档中释放表格数据](https://datascience.blog.wzb.eu/2017/02/16/data-mining-ocr-pdfs-using-pdftabextract-to-liberate-tabular-data-from-scanned-documents/)
+- [Parse text, table and layout from PDF file with PyMuPDF](https://github.com/dothinking/pdf2docx)
+- [PyMuPDF](https://pymupdf.readthedocs.io/en/latest/module.html)
 ~~~shell
+http://coolwanglu.github.io/pdf2htmlEX/doc/tb108wang.html
 alias pdf2htmlEX="docker run -ti --rm -v ~/pdf:/pdf bwits/pdf2htmlex pdf2htmlEX"
 pdf2htmlEX -h 
 pdf2htmlEX --zoom 1.3 test.pdf
+~~~
+
+### ocrPDF
+
+- [ocrmypdf,效果很一般](https://ocrmypdf.readthedocs.io/en/latest/languages.html)
+
+~~~shell
+docker cp /root/qiaoyongtian/temp/image.pdf ubuntu_zh_java_1_8_0:/root/   
+ocrmypdf -l chi_sim image.pdf image_searchable.pdf
+root@f541d06e944d:/# ocrmypdf --version
+9.6.0+dfsg
+tesseract --list-langs
+# Display a list of all Tesseract language packs
+apt-cache search tesseract-ocr
+# Install Chinese Simplified language pack
+apt-get install tesseract-ocr-chi-sim
 ~~~
 
 ## DOC解析
