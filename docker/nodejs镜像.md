@@ -51,14 +51,31 @@ npm -l
 
 ### docker容器操作常用
 
+- 容器连接，进入bash操作界面
+
+~~~shell
+# 【继续运行docker run启动时的shell界面】
+docker attach --sig-proxy=false ubuntu_zh_nodejs_10_19_0  # 连接到正在运行中的容器
+# 【打开一个新的shell界面，但其对bash的支持不友好】
+docker exec -it ubuntu_zh_nodejs_10_19_0 /bin/sh  # 在容器中开启一个交互模式的终端
+# 退出且不关闭容器：Ctrl+P+Q
+~~~
+
+- 容器信息查看
+
+~~~shell
+docker top ubuntu_zh_nodejs_10_19_0  # 查看容器内的进程信息
+docker inspect ubuntu_zh_nodejs_10_19_0  # 获取容器/镜像的元数据详细信息
+docker logs ubuntu_zh_nodejs_10_19_0  # 获取容器的日志
+docker port ubuntu_zh_nodejs_10_19_0  # 列出指定的容器的端口映射
+~~~
+
 - 容器启动与停止
 
 ~~~shell
-docker exec -it ubuntu_zh_nodejs_10_19_0 /bin/sh  # 连接node容器，并进入其shell界面
 docker start ubuntu_zh_nodejs_10_19_0  # 启动node容器
 docker rm -f ubuntu_zh_nodejs_10_19_0  # 删除node容器
 docker stop ubuntu_zh_nodejs_10_19_0  # 停止node容器
-# 退出且不关闭容器：Ctrl+P+Q
 ~~~
 
 - 容器与宿主机之间拷贝文件
