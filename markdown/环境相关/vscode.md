@@ -66,7 +66,7 @@
         ".git",
         ".DS_Store",
         ".temp",
-        "__pycache__/",
+        "__pycache__",
         "*.py[cod]",
         "*$py.class"
     ],
