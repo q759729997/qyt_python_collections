@@ -39,3 +39,7 @@
 ## 停用词
 
 - [中文常用停用词表](https://github.com/goto456/stopwords)
+
+## 中文纠错
+
+- [中文文本纠错工具。音似、形似错字（或变体字）纠正，可用于中文拼音、笔画输入法的错误纠正。](https://github.com/shibing624/pycorrector)
