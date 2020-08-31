@@ -2,6 +2,7 @@
 
 - [SnowNLP: Simplified Chinese Text Processing](https://github.com/isnowfy/snownlp)
 - [Natural Language Processing (NLP) Research](https://ai.tencent.com/ailab/nlp/en/index.html)
+- [MYNLP是一个Java实现的高性能、柔性API、可扩展的中文NLP工具包。](https://mynlp.mayabot.com/#_mynlp%E4%BB%8B%E7%BB%8D)
 
 ## 词法分析
 
