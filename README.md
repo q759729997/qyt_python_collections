@@ -17,7 +17,7 @@ pip install pyrsistent==0.15.0  //windows安装
 ~~~python
 c.NotebookApp.ip = '*'  # ip配置，防止Cannot assign requested address
 c.NotebookApp.port = 8765  # port配置
-c.NotebookApp.notebook_dir = '/root/notebook'  # 默认启动路径
+c.NotebookApp.notebook_dir = '/root/notebook'  # 默认启动路径（windows：'D:/workspace'）
 c.NotebookApp.open_browser = False  # 是否打开浏览器
 ~~~
 
