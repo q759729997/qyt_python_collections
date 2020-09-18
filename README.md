@@ -127,3 +127,11 @@ tmux detach //离开会话
 apt install tmux # 安装软件
 apt update  # apt更新
 ~~~
+
+## python路径引入与删除
+
+~~~shell
+export PYTHONPATH=$PYTHONPATH:/kdChatbot  # 导入python路径
+echo $PYTHONPATH  # 查看python路径设置是否生效
+unset PYTHONPATH  # 删除python路径
+~~~
